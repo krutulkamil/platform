@@ -4,7 +4,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 
-import * as styles from './button.styles';
+import * as styles from './index.styles';
 
 const buttonVariants = cva(styles.baseStyles, {
   variants: {
