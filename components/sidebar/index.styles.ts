@@ -11,3 +11,13 @@ export const logoLinkStyles = cn('flex items-center pl-3 mb-14');
 export const logoImageWrapperStyles = cn('relative w-8 h-8 mr-4');
 
 export const titleStyles = cn('text-2xl font-bold');
+
+export const routesWrapperStyles = cn('space-y-1');
+
+export const routeItemStyles = cn('flex items-center flex-1');
+
+export const routeLinkStyles = cn(
+  'text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition'
+);
+
+export const routeIconStyles = cn('h-5 w-5 mr-3');
