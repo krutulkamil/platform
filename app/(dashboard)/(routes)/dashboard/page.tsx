@@ -2,12 +2,10 @@ import React from 'react';
 
 import { Button } from '@/components/ui/button';
 
-import * as styles from './page.styles';
-
-export default function Home() {
+export default function DashboardPage() {
   return (
     <>
-      <p className={styles.paragraphStyles}>Hello AI</p>
+      <p>DASHBOARD</p>
       <Button>Click me</Button>
     </>
   );
