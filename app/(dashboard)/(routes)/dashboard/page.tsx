@@ -1,12 +1,11 @@
 import React from 'react';
-
-import { Button } from '@/components/ui/button';
+import { UserButton } from '@clerk/nextjs';
 
 export default function DashboardPage() {
   return (
-    <>
-      <p>DASHBOARD</p>
-      <Button>Click me</Button>
-    </>
+    <div>
+      <p>Dashboard Page</p>
+      <UserButton afterSignOutUrl="/" />
+    </div>
   );
 }

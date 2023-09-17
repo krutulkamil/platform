@@ -16,5 +16,5 @@ export default function LandingPage() {
         </Link>
       </div>
     </div>
-  )
+  );
 }

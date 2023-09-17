@@ -8,10 +8,10 @@ export const metadata: Metadata = {
   description: 'Please sign in to continue.',
 };
 
-export default function AuthLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+interface IProps {
+  children: React.ReactElement;
+}
+
+export default function AuthLayout({ children }: IProps) {
   return <div className={styles.flexWrapperStyles}>{children}</div>;
 }

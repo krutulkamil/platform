@@ -12,11 +12,11 @@ export const metadata: Metadata = {
   description: 'AI Powered Platform',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+interface IProps {
+  children: React.ReactElement;
+}
+
+export default function RootLayout({ children }: IProps) {
   return (
     <ClerkProvider>
       <html lang="en">
