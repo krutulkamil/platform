@@ -16,6 +16,10 @@ export const routesWrapperStyles = cn('space-y-1');
 
 export const routeItemStyles = cn('flex items-center flex-1');
 
+export const routeActiveStyles = cn('text-white bg-white/10');
+
+export const routeInActiveStyles = cn('text-zinc-400');
+
 export const routeLinkStyles = cn(
   'text-sm group flex p-3 w-full justify-start font-medium cursor-pointer hover:text-white hover:bg-white/10 rounded-lg transition'
 );

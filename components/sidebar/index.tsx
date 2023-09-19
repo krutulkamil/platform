@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Montserrat } from 'next/font/google';
+import { usePathname } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
 import { routes } from '@/components/sidebar/routes';
@@ -16,6 +17,8 @@ const montserrat = Montserrat({
 });
 
 export const Sidebar = () => {
+  const pathname = usePathname();
+
   return (
     <div className={styles.wrapperStyles}>
       <div className={styles.spacingWrapperStyles}>
@@ -32,7 +35,12 @@ export const Sidebar = () => {
             <Link
               key={route.href}
               href={route.href}
-              className={styles.routeLinkStyles}
+              className={cn(
+                styles.routeLinkStyles,
+                pathname === route.href
+                  ? styles.routeActiveStyles
+                  : styles.routeInActiveStyles
+              )}
             >
               <div className={styles.routeItemStyles}>
                 <route.icon
