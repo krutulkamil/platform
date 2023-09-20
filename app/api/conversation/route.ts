@@ -2,6 +2,8 @@ import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs';
 
+import type { IMessage } from '@/types/message';
+
 const openai = !!process.env.OPENAI_API_KEY
   ? new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
@@ -11,9 +13,7 @@ const openai = !!process.env.OPENAI_API_KEY
 export async function POST(req: Request) {
   try {
     const { userId } = auth();
-
-    // TODO: add req interface
-    const { messages } = await req.json();
+    const { messages }: { messages: IMessage[] } = await req.json();
 
     if (!userId) {
       return new NextResponse('Unauthorized', { status: 401 });
