@@ -13,6 +13,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Empty } from '@/components/common/empty';
 import { Loader } from '@/components/common/loader';
+import { UserAvatar } from '@/components/common/user-avatar';
+import { BotAvatar } from '@/components/common/bot-avatar';
 import { cn } from '@/lib/utils';
 import {
   formSchema,
@@ -51,7 +53,8 @@ export default function ConversationPage() {
         }
       );
 
-      setMessages((current) => [...current, data]);
+      setMessages((current) => [...current, userMessage, data]);
+
       form.reset();
     } catch (error: unknown) {
       console.log(error);
@@ -112,13 +115,16 @@ export default function ConversationPage() {
               <div
                 key={message.content}
                 className={cn(
-                  styles.messageContentStyles,
+                  styles.messageContentBaseStyles,
                   message.role === 'user'
                     ? styles.userMessageStyles
                     : styles.assistantMessageStyles
                 )}
               >
-                {message.content}
+                {message.role === 'user' ? <UserAvatar /> : <BotAvatar />}
+                <p className={styles.messageContentTextStyles}>
+                  {message.content}
+                </p>
               </div>
             ))}
           </div>
