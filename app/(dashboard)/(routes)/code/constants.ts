@@ -1,9 +1,9 @@
 import * as z from 'zod';
 
-export const conversationSchema = z.object({
+export const codeSchema = z.object({
   prompt: z.string().min(1, {
     message: 'Prompt must be at least 1 character long',
   }),
 });
 
-export type TConversationSchema = z.TypeOf<typeof conversationSchema>;
+export type TCodeSchema = z.TypeOf<typeof codeSchema>;

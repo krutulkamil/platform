@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { MessageSquare } from 'lucide-react';
+import { Code } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 
@@ -17,28 +17,28 @@ import { UserAvatar } from '@/components/common/user-avatar';
 import { BotAvatar } from '@/components/common/bot-avatar';
 import { cn } from '@/lib/utils';
 import {
-  conversationSchema,
-  type TConversationSchema,
-} from '@/app/(dashboard)/(routes)/conversation/constants';
+  codeSchema,
+  type TCodeSchema,
+} from '@/app/(dashboard)/(routes)/code/constants';
 import type { ICompletionMessage } from '@/types/completionMessage';
 
 import * as styles from './page.styles';
 
-export default function ConversationPage() {
+export default function CodePage() {
   const [messages, setMessages] = useState<ICompletionMessage[]>([]);
 
   const router = useRouter();
 
-  const form = useForm<TConversationSchema>({
+  const form = useForm<TCodeSchema>({
     defaultValues: {
       prompt: '',
     },
-    resolver: zodResolver(conversationSchema),
+    resolver: zodResolver(codeSchema),
   });
 
   const isLoading = form.formState.isSubmitting;
 
-  const onSubmit: SubmitHandler<TConversationSchema> = async (values) => {
+  const onSubmit: SubmitHandler<TCodeSchema> = async (values) => {
     try {
       const userMessage: ICompletionMessage = {
         role: 'user',
@@ -47,7 +47,7 @@ export default function ConversationPage() {
       const newMessages = [...messages, userMessage];
 
       const { data } = await axios.post<ICompletionMessage>(
-        '/api/conversation',
+        '/api/code',
         {
           messages: newMessages,
         }
@@ -66,11 +66,11 @@ export default function ConversationPage() {
   return (
     <div>
       <Heading
-        title="Conversation"
-        description="Our most advanced conversation model."
-        icon={MessageSquare}
-        iconColor="text-violet-500"
-        bgColor="bg-violet-500/10"
+        title="Code Generation"
+        description="Generate code using descriptive text."
+        icon={Code}
+        iconColor="text-green-700"
+        bgColor="bg-green-700/10"
       />
       <div className={styles.formWrapperStyles}>
         <div>
@@ -79,7 +79,7 @@ export default function ConversationPage() {
               onSubmit={form.handleSubmit(onSubmit)}
               className={styles.formStyles}
             >
-              <FormField<TConversationSchema>
+              <FormField<TCodeSchema>
                 name="prompt"
                 control={form.control}
                 render={({ field }) => (
@@ -88,7 +88,7 @@ export default function ConversationPage() {
                       <Input
                         className={styles.formInputStyles}
                         disabled={isLoading}
-                        placeholder="How do I calculate the radius of a circle?"
+                        placeholder="Simple toggle button using React hooks."
                         {...field}
                       />
                     </FormControl>

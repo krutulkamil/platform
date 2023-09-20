@@ -3,7 +3,7 @@
 import React from 'react';
 
 import { tools } from '@/config/tools';
-import { ToolCard } from '@/components/tool-card';
+import { ToolCard } from '@/components/common/tool-card';
 
 import * as styles from './page.styles';
 
