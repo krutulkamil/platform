@@ -12,12 +12,13 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Empty } from '@/components/common/empty';
+import { Loader } from '@/components/common/loader';
+import { cn } from '@/lib/utils';
 import {
   formSchema,
   type TFormSchema,
 } from '@/app/(dashboard)/(routes)/conversation/constants';
 import type { ICompletionMessage } from '@/types/completionMessage';
-import { Loader } from '@/components/common/loader';
 
 import * as styles from './page.styles';
 
@@ -108,7 +109,17 @@ export default function ConversationPage() {
           )}
           <div className={styles.messagesGridStyles}>
             {messages.map((message) => (
-              <div key={message.content}>{message.content}</div>
+              <div
+                key={message.content}
+                className={cn(
+                  styles.messageContentStyles,
+                  message.role === 'user'
+                    ? styles.userMessageStyles
+                    : styles.assistantMessageStyles
+                )}
+              >
+                {message.content}
+              </div>
             ))}
           </div>
         </div>

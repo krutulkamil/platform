@@ -20,6 +20,14 @@ export const messagesWrapperStyles = cn('space-y-4 mt-4');
 
 export const messagesGridStyles = cn('flex flex-col-reverse gap-y-4');
 
+export const messageContentStyles = cn(
+  'p-8 w-full flex items-start gap-x-8 rounded-lg'
+);
+
+export const userMessageStyles = cn('bg-white border border-black/10');
+
+export const assistantMessageStyles = cn('bg-muted');
+
 export const loaderWrapperStyles = cn(
   'p-8 rounded-lg w-full flex items-center justify-center bg-muted'
 );
