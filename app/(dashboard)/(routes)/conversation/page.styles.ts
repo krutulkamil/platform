@@ -9,3 +9,9 @@ export const formStyles = cn(
 export const formItemStyles = cn('col-span-12 lg:col-span-10');
 
 export const formControlsStyles = cn('m-0 p-0');
+
+export const formInputStyles = cn(
+  'border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent'
+);
+
+export const formButtonStyles = cn('col-span-12 lg:col-span-2 w-full');

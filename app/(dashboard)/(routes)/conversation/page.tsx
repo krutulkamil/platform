@@ -7,10 +7,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Heading } from '@/components/heading';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
   formSchema,
   type TFormSchema,
 } from '@/app/(dashboard)/(routes)/conversation/constants';
+import { Button } from '@/components/ui/button';
 
 import * as styles from './page.styles';
 
@@ -25,7 +27,7 @@ export default function ConversationPage() {
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit: SubmitHandler<TFormSchema> = async (values: TFormSchema) => {
-    console.log(values);
+    // TODO: call API
   };
 
   return (
@@ -48,13 +50,19 @@ export default function ConversationPage() {
                 name="prompt"
                 control={form.control}
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className={styles.formItemStyles}>
                     <FormControl className={styles.formControlsStyles}>
-                      // TODO: create input component
+                      <Input
+                        className={styles.formInputStyles}
+                        disabled={isLoading}
+                        placeholder="How do I calculate the radius of a circle?"
+                        {...field}
+                      />
                     </FormControl>
                   </FormItem>
                 )}
               />
+              <Button className={styles.formButtonStyles}>Generate</Button>
             </form>
           </Form>
         </div>
