@@ -38,4 +38,4 @@ export const tools = [
   },
 ];
 
-export type TTool = typeof tools[number];
+export type TTool = (typeof tools)[number];
