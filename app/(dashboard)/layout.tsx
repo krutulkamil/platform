@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Navbar } from '@/components/navbar';
-import { Sidebar } from '@/components/sidebar';
+import { Navbar } from '@/components/layout/navbar';
+import { Sidebar } from '@/components/layout/sidebar';
 
 import * as styles from './layout.styles';
 

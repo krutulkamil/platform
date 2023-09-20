@@ -6,7 +6,7 @@ import { ArrowRight } from 'lucide-react';
 
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import type { TTool } from '@/components/tool-card/tools';
+import type { TTool } from '@/config/tools';
 
 import * as styles from './index.styles';
 

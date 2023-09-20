@@ -7,7 +7,7 @@ import { Montserrat } from 'next/font/google';
 import { usePathname } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
-import { routes } from '@/components/sidebar/routes';
+import { routes } from '@/config/routes';
 
 import * as styles from './index.styles';
 

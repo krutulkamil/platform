@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Menu } from 'lucide-react';
 
-import { Sidebar } from '@/components/sidebar';
+import { Sidebar } from '@/components/layout/sidebar';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetTrigger, SheetContent } from '@/components/ui/sheet';
 

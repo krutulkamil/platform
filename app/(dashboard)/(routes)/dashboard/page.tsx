@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { tools } from '@/components/tool-card/tools';
+import { tools } from '@/config/tools';
 import { ToolCard } from '@/components/tool-card';
 
 import * as styles from './page.styles';

@@ -7,14 +7,15 @@ import { MessageSquare } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 
-import { Heading } from '@/components/heading';
+import { Heading } from '@/components/layout/heading';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Empty } from '@/components/common/empty';
 import {
   formSchema,
   type TFormSchema,
 } from '@/app/(dashboard)/(routes)/conversation/constants';
-import { Button } from '@/components/ui/button';
 import type { ICompletionMessage } from '@/types/completionMessage';
 
 import * as styles from './page.styles';
@@ -33,7 +34,7 @@ export default function ConversationPage() {
 
   const isLoading = form.formState.isSubmitting;
 
-  const onSubmit: SubmitHandler<TFormSchema> = async (values: TFormSchema) => {
+  const onSubmit: SubmitHandler<TFormSchema> = async (values) => {
     try {
       const userMessage: ICompletionMessage = {
         role: 'user',
@@ -96,6 +97,9 @@ export default function ConversationPage() {
           </Form>
         </div>
         <div className={styles.messagesWrapperStyles}>
+          {!messages.length && !isLoading && (
+            <Empty label="No conversation started." />
+          )}
           <div className={styles.messagesGridStyles}>
             {messages.map((message) => (
               <div key={message.content}>{message.content}</div>
