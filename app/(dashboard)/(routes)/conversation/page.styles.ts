@@ -19,3 +19,7 @@ export const formButtonStyles = cn('col-span-12 lg:col-span-2 w-full');
 export const messagesWrapperStyles = cn('space-y-4 mt-4');
 
 export const messagesGridStyles = cn('flex flex-col-reverse gap-y-4');
+
+export const loaderWrapperStyles = cn(
+  'p-8 rounded-lg w-full flex items-center justify-center bg-muted'
+);

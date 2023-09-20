@@ -17,6 +17,7 @@ import {
   type TFormSchema,
 } from '@/app/(dashboard)/(routes)/conversation/constants';
 import type { ICompletionMessage } from '@/types/completionMessage';
+import { Loader } from '@/components/common/loader';
 
 import * as styles from './page.styles';
 
@@ -97,6 +98,11 @@ export default function ConversationPage() {
           </Form>
         </div>
         <div className={styles.messagesWrapperStyles}>
+          {isLoading && (
+            <div className={styles.loaderWrapperStyles}>
+              <Loader />
+            </div>
+          )}
           {!messages.length && !isLoading && (
             <Empty label="No conversation started." />
           )}
