@@ -33,3 +33,11 @@ export const assistantMessageStyles = cn('bg-muted');
 export const loaderWrapperStyles = cn(
   'p-8 rounded-lg w-full flex items-center justify-center bg-muted'
 );
+
+export const preMarkdownStyles = cn(
+  'overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg'
+);
+
+export const codeMarkdownStyles = cn('bg-black/10 rounded-lg p-1');
+
+export const markdownGeneralStyles = cn('text-sm overflow-hidden leading-7');

@@ -12,7 +12,8 @@ const openai = !!process.env.OPENAI_API_KEY
 
 const instructionMessage: ICompletionMessage = {
   role: 'system',
-  content: 'You are a code generator. You must answer only in markdown code snippets. Use code comments for explanations.'
+  content:
+    'You are a code generator. You must answer only in markdown code snippets. Use code comments for explanations.',
 };
 
 export async function POST(req: Request) {
@@ -33,7 +34,7 @@ export async function POST(req: Request) {
     }
 
     const response = await openai.chat.completions.create({
-      model: 'gpt-4',
+      model: 'gpt-3.5-turbo',
       messages: [instructionMessage, ...messages],
     });
 

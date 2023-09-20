@@ -6,6 +6,7 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { Code } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 
 import { Heading } from '@/components/layout/heading';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
@@ -46,12 +47,9 @@ export default function CodePage() {
       };
       const newMessages = [...messages, userMessage];
 
-      const { data } = await axios.post<ICompletionMessage>(
-        '/api/code',
-        {
-          messages: newMessages,
-        }
-      );
+      const { data } = await axios.post<ICompletionMessage>('/api/code', {
+        messages: newMessages,
+      });
 
       setMessages((current) => [...current, userMessage, data]);
 
@@ -122,9 +120,21 @@ export default function CodePage() {
                 )}
               >
                 {message.role === 'user' ? <UserAvatar /> : <BotAvatar />}
-                <p className={styles.messageContentTextStyles}>
-                  {message.content}
-                </p>
+                <ReactMarkdown
+                  components={{
+                    pre: ({ node: _, ...props }) => (
+                      <div className={styles.preMarkdownStyles}>
+                        <pre {...props} />
+                      </div>
+                    ),
+                    code: ({ node: _, ...props }) => (
+                      <code className={styles.codeMarkdownStyles} {...props} />
+                    ),
+                  }}
+                  className={styles.markdownGeneralStyles}
+                >
+                  {message.content ?? ''}
+                </ReactMarkdown>
               </div>
             ))}
           </div>
