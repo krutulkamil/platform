@@ -37,3 +37,5 @@ export const tools = [
     href: '/code',
   },
 ];
+
+export type TTool = typeof tools[number];

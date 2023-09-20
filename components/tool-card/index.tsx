@@ -5,13 +5,13 @@ import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 
 import { Card } from '@/components/ui/card';
-import { tools } from '@/components/tool-card/tools';
 import { cn } from '@/lib/utils';
+import type { TTool } from '@/components/tool-card/tools';
 
 import * as styles from './index.styles';
 
 interface IProps {
-  tool: (typeof tools)[number];
+  tool: TTool;
 }
 
 export const ToolCard = ({ tool }: IProps) => {
