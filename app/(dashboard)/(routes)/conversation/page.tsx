@@ -15,16 +15,12 @@ import {
   type TFormSchema,
 } from '@/app/(dashboard)/(routes)/conversation/constants';
 import { Button } from '@/components/ui/button';
+import type { ICompletionMessage } from '@/types/completionMessage';
 
 import * as styles from './page.styles';
 
-interface IMessage {
-  role: 'user' | 'assistant';
-  content: string;
-}
-
 export default function ConversationPage() {
-  const [messages, setMessages] = useState<IMessage[]>([]);
+  const [messages, setMessages] = useState<ICompletionMessage[]>([]);
 
   const router = useRouter();
 
@@ -39,12 +35,18 @@ export default function ConversationPage() {
 
   const onSubmit: SubmitHandler<TFormSchema> = async (values: TFormSchema) => {
     try {
-      const userMessage: IMessage = { role: 'user', content: values.prompt };
+      const userMessage: ICompletionMessage = {
+        role: 'user',
+        content: values.prompt,
+      };
       const newMessages = [...messages, userMessage];
 
-      const { data } = await axios.post('/api/conversation', {
-        messages: newMessages,
-      });
+      const { data } = await axios.post<ICompletionMessage>(
+        '/api/conversation',
+        {
+          messages: newMessages,
+        }
+      );
 
       setMessages((current) => [...current, data]);
       form.reset();
