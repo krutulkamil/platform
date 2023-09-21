@@ -17,6 +17,7 @@ import {
   musicSchema,
   type TMusicSchema,
 } from '@/app/(dashboard)/(routes)/music/schema';
+import type { IMusicResponse } from '@/types/musicResponse';
 import * as styles from '@/app/(dashboard)/layout.styles';
 
 export default function MusicPage() {
@@ -37,10 +38,7 @@ export default function MusicPage() {
     try {
       setMusic(undefined);
 
-      const { data } = await axios.post<{ audio: string }>(
-        '/api/music',
-        values
-      );
+      const { data } = await axios.post<IMusicResponse>('/api/music', values);
 
       setMusic(data.audio);
       form.reset();
@@ -86,7 +84,11 @@ export default function MusicPage() {
             </div>
           )}
           {!music && !isLoading && <Empty label="No music generated yet." />}
-          <div>Music will be generated here.</div>
+          {music && (
+            <audio controls className={styles.audioStyles}>
+              <source src={music} />
+            </audio>
+          )}
         </div>
       </div>
     </div>
