@@ -20,14 +20,15 @@ import {
 import { Button } from '@/components/ui/button';
 import { Empty } from '@/components/common/empty';
 import { Loader } from '@/components/common/loader';
-import { cn } from '@/lib/utils';
 import {
   imageSchema,
   type TImageSchema,
 } from '@/app/(dashboard)/(routes)/image/schema';
-import { amountOptions, resolutionOptions } from '@/app/(dashboard)/(routes)/image/constants';
-
-import * as styles from './page.styles';
+import {
+  amountOptions,
+  resolutionOptions,
+} from '@/app/(dashboard)/(routes)/image/constants';
+import * as styles from '@/app/(dashboard)/layout.styles';
 
 export default function ImagePage() {
   const [images, setImages] = useState<string[]>([]);

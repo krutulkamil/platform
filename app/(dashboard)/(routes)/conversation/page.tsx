@@ -21,8 +21,7 @@ import {
   type TConversationSchema,
 } from '@/app/(dashboard)/(routes)/conversation/schema';
 import type { ICompletionMessage } from '@/types/completionMessage';
-
-import * as styles from './page.styles';
+import * as styles from '@/app/(dashboard)/layout.styles';
 
 export default function ConversationPage() {
   const [messages, setMessages] = useState<ICompletionMessage[]>([]);

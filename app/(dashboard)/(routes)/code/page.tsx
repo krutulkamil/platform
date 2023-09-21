@@ -22,8 +22,7 @@ import {
 } from '@/app/(dashboard)/(routes)/code/schema';
 import type { ICompletionMessage } from '@/types/completionMessage';
 import { CodeWrapper } from '@/components/common/code-wrapper';
-
-import * as styles from './page.styles';
+import * as styles from '@/app/(dashboard)/layout.styles';
 
 export default function CodePage() {
   const [messages, setMessages] = useState<ICompletionMessage[]>([]);
