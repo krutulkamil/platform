@@ -8,13 +8,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 
 import { Heading } from '@/components/layout/heading';
-import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { Form } from '@/components/ui/form';
+import { Input } from '@/components/common/forms/controlled-inputs/input';
 import { Button } from '@/components/ui/button';
 import { Empty } from '@/components/common/empty';
 import { Loader } from '@/components/common/loader';
-import { UserAvatar } from '@/components/common/user-avatar';
-import { BotAvatar } from '@/components/common/bot-avatar';
+import { UserAvatar } from '@/components/common/avatars/user-avatar';
+import { BotAvatar } from '@/components/common/avatars/bot-avatar';
 import { cn } from '@/lib/utils';
 import {
   conversationSchema,
@@ -78,20 +78,11 @@ export default function ConversationPage() {
               onSubmit={form.handleSubmit(onSubmit)}
               className={styles.formStyles}
             >
-              <FormField<TConversationSchema>
+              <Input<TConversationSchema>
                 name="prompt"
-                render={({ field }) => (
-                  <FormItem className={styles.formItemStyles}>
-                    <FormControl className={styles.formControlsStyles}>
-                      <Input
-                        className={styles.formInputStyles}
-                        disabled={isLoading}
-                        placeholder="How do I calculate the radius of a circle?"
-                        {...field}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
+                control={form.control}
+                placeholder="How do I calculate the radius of a circle?"
+                isLoading={isLoading}
               />
               <Button className={styles.formButtonStyles} disabled={isLoading}>
                 Generate

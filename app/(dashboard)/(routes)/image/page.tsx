@@ -9,7 +9,7 @@ import axios from 'axios';
 
 import { Heading } from '@/components/layout/heading';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/common/forms/controlled-inputs/input';
 import {
   Select,
   SelectContent,
@@ -80,20 +80,12 @@ export default function ImagePage() {
               onSubmit={form.handleSubmit(onSubmit)}
               className={styles.formStyles}
             >
-              <FormField<TImageSchema>
+              <Input<TImageSchema>
                 name="prompt"
-                render={({ field }) => (
-                  <FormItem className={styles.formItemSmallStyles}>
-                    <FormControl className={styles.formControlsStyles}>
-                      <Input
-                        className={styles.formInputStyles}
-                        disabled={isLoading}
-                        placeholder="A picture of a horse in Swiss alps"
-                        {...field}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
+                control={form.control}
+                placeholder="A picture of a horse in Swiss alps"
+                isLoading={isLoading}
+                isSmall
               />
               <FormField<TImageSchema>
                 name="amount"
