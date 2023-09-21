@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/cn';
 export const pageCardWrapperStyles = cn(
   'p-4 border-black/5 flex items-center justify-between hover:shadow-md transition cursor-pointer'
 );

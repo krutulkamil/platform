@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/cn';
 
 export const wrapperStyles = cn('px-4 lg:px-8 flex items-center gap-x-3 mb-8');
 

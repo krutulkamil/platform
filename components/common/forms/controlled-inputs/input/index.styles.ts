@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/cn';
 
 export const formItemStyles = cn('col-span-12 lg:col-span-10');
 

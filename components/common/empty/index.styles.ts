@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/cn';
 
 export const emptyWrapperStyles = cn(
   'h-full p-20 flex flex-col items-center justify-center'

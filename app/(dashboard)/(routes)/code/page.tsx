@@ -15,7 +15,7 @@ import { Empty } from '@/components/common/empty';
 import { Loader } from '@/components/common/loader';
 import { UserAvatar } from '@/components/common/avatars/user-avatar';
 import { BotAvatar } from '@/components/common/avatars/bot-avatar';
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/cn';
 import {
   codeSchema,
   type TCodeSchema,

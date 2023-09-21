@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/cn';
 
 export const headingWrapperStyles = cn('mb-8 space-y-4');
 

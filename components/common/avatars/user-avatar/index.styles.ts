@@ -1,3 +1,3 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/cn';
 
 export const userAvatarStyles = cn('h-8 w-8');

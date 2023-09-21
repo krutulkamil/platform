@@ -11,7 +11,7 @@ import {
   Input as ShadcnInput,
   type InputProps as ShadcnInputProps,
 } from '@/components/ui/input';
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/cn';
 
 import * as styles from './index.styles';
 

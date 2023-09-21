@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/cn';
 
 export const preMarkdownStyles = cn(
   'overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg'

@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/cn';
 
 export const loaderWrapperStyles = cn(
   'h-full flex flex-col gap-y-4 items-center justify-center'

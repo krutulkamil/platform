@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 
 import { Card } from '@/components/ui/card';
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/cn';
 import type { TTool } from '@/config/tools';
 
 import * as styles from './index.styles';

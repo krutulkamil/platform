@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/cn';
 
 export const cardStyles = cn(
   'rounded-lg border bg-card text-card-foreground shadow-sm'
