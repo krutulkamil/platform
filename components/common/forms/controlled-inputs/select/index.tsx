@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { cn } from '@/lib/utils';
 
 import * as styles from './index.styles';
 
@@ -22,6 +23,7 @@ type TSelect<T extends FieldValues> = {
   control: Control<T>;
   options: Array<{ value: string; label: string }>;
   isLoading: boolean;
+  className?: string;
 } & React.InputHTMLAttributes<HTMLSelectElement>;
 
 export const Select = <T extends FieldValues>({
@@ -29,18 +31,19 @@ export const Select = <T extends FieldValues>({
   control,
   options,
   isLoading,
+  className,
 }: TSelect<T>) => {
   return (
     <Controller
       name={name}
       control={control}
       render={({ field }) => (
-        <FormItem className={styles.formSelectItemStyles}>
+        <FormItem className={cn(styles.formSelectItemStyles, className)}>
           <ShadcnSelect
             disabled={isLoading}
             onValueChange={field.onChange}
-            value={field.value}
             defaultValue={field.value}
+            {...field}
           >
             <FormControl>
               <SelectTrigger>
