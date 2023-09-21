@@ -37,9 +37,9 @@ export default function VideoPage() {
     try {
       setVideo(undefined);
 
-      const { data } = await axios.post('/api/video', values);
+      const { data } = await axios.post<string[]>('/api/video', values);
 
-      setVideo(data.audio);
+      setVideo(data[0]);
       form.reset();
     } catch (error: unknown) {
       console.log(error);
@@ -84,9 +84,9 @@ export default function VideoPage() {
           )}
           {!video && !isLoading && <Empty label="No video generated yet." />}
           {video && (
-            <audio controls className={styles.audioStyles}>
+            <video controls className={styles.videoStyles}>
               <source src={video} />
-            </audio>
+            </video>
           )}
         </div>
       </div>

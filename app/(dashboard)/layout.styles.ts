@@ -41,3 +41,7 @@ export const imagesGridWrapperStyles = cn(
 );
 
 export const audioStyles = cn('w-full mt-8');
+
+export const videoStyles = cn(
+  'w-full aspect-video mt-8 rounded-lg border bg-black'
+);
