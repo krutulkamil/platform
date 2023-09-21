@@ -10,16 +10,22 @@ import axios from 'axios';
 import { Heading } from '@/components/layout/heading';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Empty } from '@/components/common/empty';
 import { Loader } from '@/components/common/loader';
-import { UserAvatar } from '@/components/common/user-avatar';
-import { BotAvatar } from '@/components/common/bot-avatar';
 import { cn } from '@/lib/utils';
 import {
   imageSchema,
   type TImageSchema,
 } from '@/app/(dashboard)/(routes)/image/schema';
+import { amountOptions, resolutionOptions } from '@/app/(dashboard)/(routes)/image/constants';
 
 import * as styles from './page.styles';
 
@@ -76,7 +82,7 @@ export default function ImagePage() {
               <FormField<TImageSchema>
                 name="prompt"
                 render={({ field }) => (
-                  <FormItem className={styles.formItemStyles}>
+                  <FormItem className={styles.formItemSmallStyles}>
                     <FormControl className={styles.formControlsStyles}>
                       <Input
                         className={styles.formInputStyles}
@@ -88,13 +94,57 @@ export default function ImagePage() {
                   </FormItem>
                 )}
               />
-              // WIP
               <FormField<TImageSchema>
                 name="amount"
                 control={form.control}
                 render={({ field }) => (
                   <FormItem className={styles.formItemAmountStyles}>
-                    //TODO: add select component
+                    <Select
+                      disabled={isLoading}
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue defaultValue={field.value} />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {amountOptions.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormItem>
+                )}
+              />
+              <FormField<TImageSchema>
+                name="resolution"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className={styles.formItemAmountStyles}>
+                    <Select
+                      disabled={isLoading}
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue defaultValue={field.value} />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {resolutionOptions.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </FormItem>
                 )}
               />
