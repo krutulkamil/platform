@@ -46,7 +46,7 @@ export default function ImagePage() {
     try {
       setImages([]);
 
-      const { data }: { data: IImageData[] } = await axios.post('/api/image', {
+      const { data } = await axios.post<IImageData[]>('/api/image', {
         ...values,
       });
       const urls = data.map((image) => image.url);
