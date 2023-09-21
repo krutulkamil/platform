@@ -9,11 +9,12 @@ export const increaseApiLimit = async (): Promise<UserApiLimit | undefined> => {
 
   if (!userId) return;
 
-  const userApiLimit: UserApiLimit | null = await prisma.userApiLimit.findUnique({
-    where: {
-      userId,
-    }
-  });
+  const userApiLimit: UserApiLimit | null =
+    await prisma.userApiLimit.findUnique({
+      where: {
+        userId,
+      },
+    });
 
   if (!userApiLimit) {
     return prisma.userApiLimit.create({
@@ -42,7 +43,7 @@ export const checkApiLimit = async (): Promise<boolean> => {
   const userApiLimit = await prisma.userApiLimit.findUnique({
     where: {
       userId,
-    }
+    },
   });
 
   return !userApiLimit || userApiLimit.count < MAX_FREE_COUNTS;
