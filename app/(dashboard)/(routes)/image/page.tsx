@@ -22,6 +22,8 @@ import {
   amountOptions,
   resolutionOptions,
 } from '@/app/(dashboard)/(routes)/image/constants';
+import { ImageCard } from '@/components/common/cards/image-card';
+import type { IImageData } from '@/types/imageData';
 import * as styles from '@/app/(dashboard)/layout.styles';
 
 export default function ImagePage() {
@@ -44,10 +46,10 @@ export default function ImagePage() {
     try {
       setImages([]);
 
-      const { data } = await axios.post('/api/image', { ...values });
-      console.log(data);
-
-      const urls = data.map((image: { url: string }) => image.url);
+      const { data }: { data: IImageData[] } = await axios.post('/api/image', {
+        ...values,
+      });
+      const urls = data.map((image) => image.url);
 
       setImages(urls);
       form.reset();
@@ -108,7 +110,11 @@ export default function ImagePage() {
           {!images.length && !isLoading && (
             <Empty label="No images generated." />
           )}
-          <div>Images will be rendered here.</div>
+          <div className={styles.imagesGridWrapperStyles}>
+            {images.map((src) => (
+              <ImageCard key={src} src={src} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -35,3 +35,7 @@ export const loaderWrapperStyles = cn(
 );
 
 export const loaderPaddingStyles = cn('p-20');
+
+export const imagesGridWrapperStyles = cn(
+  'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8'
+);

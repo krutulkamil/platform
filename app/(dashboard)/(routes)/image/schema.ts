@@ -1,6 +1,8 @@
 import * as z from 'zod';
 
-const resolutionSchema = z.enum(['512x512', '256x256', '1024x1024']);
+const resolutionSchema = z.enum(['512x512', '256x256', '1024x1024'], {
+  required_error: 'Resolution is required',
+});
 
 export const imageSchema = z.object({
   prompt: z.string().min(1, {
