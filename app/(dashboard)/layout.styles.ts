@@ -14,8 +14,6 @@ export const formStyles = cn(
   'rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2'
 );
 
-export const formItemAmountStyles = cn('col-span-12 lg:col-span-2');
-
 export const formButtonStyles = cn('col-span-12 lg:col-span-2 w-full');
 
 export const messagesWrapperStyles = cn('space-y-4 mt-4');

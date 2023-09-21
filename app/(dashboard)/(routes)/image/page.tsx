@@ -8,15 +8,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 
 import { Heading } from '@/components/layout/heading';
-import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
+import { Form } from '@/components/ui/form';
 import { Input } from '@/components/common/forms/controlled-inputs/input';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { Select } from '@/components/common/forms/controlled-inputs/select';
 import { Button } from '@/components/ui/button';
 import { Empty } from '@/components/common/empty';
 import { Loader } from '@/components/common/loader';
@@ -87,59 +81,17 @@ export default function ImagePage() {
                 isLoading={isLoading}
                 isSmall
               />
-              <FormField<TImageSchema>
+              <Select<TImageSchema>
                 name="amount"
                 control={form.control}
-                render={({ field }) => (
-                  <FormItem className={styles.formItemAmountStyles}>
-                    <Select
-                      disabled={isLoading}
-                      onValueChange={field.onChange}
-                      value={field.value}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue defaultValue={field.value} />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {amountOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </FormItem>
-                )}
+                isLoading={isLoading}
+                options={amountOptions}
               />
-              <FormField<TImageSchema>
+              <Select<TImageSchema>
                 name="resolution"
                 control={form.control}
-                render={({ field }) => (
-                  <FormItem className={styles.formItemAmountStyles}>
-                    <Select
-                      disabled={isLoading}
-                      onValueChange={field.onChange}
-                      value={field.value}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue defaultValue={field.value} />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {resolutionOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </FormItem>
-                )}
+                isLoading={isLoading}
+                options={resolutionOptions}
               />
               <Button className={styles.formButtonStyles} disabled={isLoading}>
                 Generate
