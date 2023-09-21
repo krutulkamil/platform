@@ -1,14 +1,8 @@
-import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs';
 
+import { openai } from '@/lib/openai';
 import type { ICompletionMessage } from '@/types/completionMessage';
-
-const openai = !!process.env.OPENAI_API_KEY
-  ? new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    })
-  : undefined;
 
 export async function POST(req: Request) {
   try {

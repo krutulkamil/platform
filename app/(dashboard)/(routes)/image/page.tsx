@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm, type SubmitHandler } from 'react-hook-form';
-import { Code } from 'lucide-react';
+import { ImageIcon } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 
@@ -17,42 +17,38 @@ import { UserAvatar } from '@/components/common/user-avatar';
 import { BotAvatar } from '@/components/common/bot-avatar';
 import { cn } from '@/lib/utils';
 import {
-  codeSchema,
-  type TCodeSchema,
-} from '@/app/(dashboard)/(routes)/code/schema';
-import type { ICompletionMessage } from '@/types/completionMessage';
-import { CodeWrapper } from '@/components/common/code-wrapper';
+  imageSchema,
+  type TImageSchema,
+} from '@/app/(dashboard)/(routes)/image/schema';
 
 import * as styles from './page.styles';
 
-export default function CodePage() {
-  const [messages, setMessages] = useState<ICompletionMessage[]>([]);
+export default function ImagePage() {
+  const [images, setImages] = useState<string[]>([]);
 
   const router = useRouter();
 
-  const form = useForm<TCodeSchema>({
+  const form = useForm<TImageSchema>({
     defaultValues: {
       prompt: '',
+      amount: '1',
+      resolution: '512x512',
     },
-    resolver: zodResolver(codeSchema),
+    resolver: zodResolver(imageSchema),
   });
 
   const isLoading = form.formState.isSubmitting;
 
-  const onSubmit: SubmitHandler<TCodeSchema> = async (values) => {
+  const onSubmit: SubmitHandler<TImageSchema> = async (values) => {
     try {
-      const userMessage: ICompletionMessage = {
-        role: 'user',
-        content: values.prompt,
-      };
-      const newMessages = [...messages, userMessage];
+      setImages([]);
 
-      const { data } = await axios.post<ICompletionMessage>('/api/code', {
-        messages: newMessages,
-      });
+      const { data } = await axios.post('/api/image', { values });
+      console.log(data);
 
-      setMessages((current) => [...current, userMessage, data]);
+      const urls = data.map((image: { url: string }) => image.url);
 
+      setImages(urls);
       form.reset();
     } catch (error: unknown) {
       console.log(error);
@@ -64,11 +60,11 @@ export default function CodePage() {
   return (
     <div>
       <Heading
-        title="Code Generation"
-        description="Generate code using descriptive text."
-        icon={Code}
-        iconColor="text-green-700"
-        bgColor="bg-green-700/10"
+        title="Image Generation"
+        description="Turn your prompt into an image."
+        icon={ImageIcon}
+        iconColor="text-pink-700"
+        bgColor="bg-pink-700/10"
       />
       <div className={styles.formWrapperStyles}>
         <div>
@@ -77,7 +73,7 @@ export default function CodePage() {
               onSubmit={form.handleSubmit(onSubmit)}
               className={styles.formStyles}
             >
-              <FormField<TCodeSchema>
+              <FormField<TImageSchema>
                 name="prompt"
                 render={({ field }) => (
                   <FormItem className={styles.formItemStyles}>
@@ -85,10 +81,20 @@ export default function CodePage() {
                       <Input
                         className={styles.formInputStyles}
                         disabled={isLoading}
-                        placeholder="Simple toggle button using React hooks."
+                        placeholder="A picture of a horse in Swiss alps"
                         {...field}
                       />
                     </FormControl>
+                  </FormItem>
+                )}
+              />
+              // WIP
+              <FormField<TImageSchema>
+                name="amount"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem className={styles.formItemAmountStyles}>
+                    //TODO: add select component
                   </FormItem>
                 )}
               />
@@ -100,29 +106,14 @@ export default function CodePage() {
         </div>
         <div className={styles.messagesWrapperStyles}>
           {isLoading && (
-            <div className={styles.loaderWrapperStyles}>
+            <div className={styles.loaderPaddingStyles}>
               <Loader />
             </div>
           )}
-          {!messages.length && !isLoading && (
-            <Empty label="No code generated." />
+          {!images.length && !isLoading && (
+            <Empty label="No images generated." />
           )}
-          <div className={styles.messagesGridStyles}>
-            {messages.map((message) => (
-              <div
-                key={message.content}
-                className={cn(
-                  styles.messageContentBaseStyles,
-                  message.role === 'user'
-                    ? styles.userMessageStyles
-                    : styles.assistantMessageStyles
-                )}
-              >
-                {message.role === 'user' ? <UserAvatar /> : <BotAvatar />}
-                <CodeWrapper>{message.content}</CodeWrapper>
-              </div>
-            ))}
-          </div>
+          <div>Images will be rendered here.</div>
         </div>
       </div>
     </div>

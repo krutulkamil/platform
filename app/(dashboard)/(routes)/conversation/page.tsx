@@ -19,7 +19,7 @@ import { cn } from '@/lib/utils';
 import {
   conversationSchema,
   type TConversationSchema,
-} from '@/app/(dashboard)/(routes)/conversation/constants';
+} from '@/app/(dashboard)/(routes)/conversation/schema';
 import type { ICompletionMessage } from '@/types/completionMessage';
 
 import * as styles from './page.styles';
@@ -81,7 +81,6 @@ export default function ConversationPage() {
             >
               <FormField<TConversationSchema>
                 name="prompt"
-                control={form.control}
                 render={({ field }) => (
                   <FormItem className={styles.formItemStyles}>
                     <FormControl className={styles.formControlsStyles}>
