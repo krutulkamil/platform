@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { MAX_FREE_COUNTS } from '@/utils/constants';
+import { useProModal } from '@/hooks/use-pro-modal';
 
 import * as styles from './index.styles';
 
@@ -16,6 +17,7 @@ interface IProps {
 
 export const FreeCounter = ({ apiLimitCount = 0 }: IProps) => {
   const [mounted, setMounted] = useState(false);
+  const { onOpen } = useProModal();
 
   useEffect(() => {
     setMounted(true);
@@ -36,7 +38,11 @@ export const FreeCounter = ({ apiLimitCount = 0 }: IProps) => {
               value={(apiLimitCount / MAX_FREE_COUNTS) * 100}
             />
           </div>
-          <Button className={styles.buttonStyles} variant="premium">
+          <Button
+            className={styles.buttonStyles}
+            variant="premium"
+            onClick={onOpen}
+          >
             Upgrade
             <Zap className={styles.buttonIconStyles} />
           </Button>
