@@ -1,7 +1,7 @@
 import { cn } from '@/utils/cn';
 
 export const wrapperStyles = cn(
-  'space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white'
+  'space-y-4 py-4 flex flex-1 flex-col h-full bg-[#111827] text-white'
 );
 
 export const spacingWrapperStyles = cn('px-3 py-2 flex-1');

@@ -15,6 +15,7 @@ const buttonVariants = cva(styles.baseStyles, {
       secondary: styles.secondaryVariantStyles,
       ghost: styles.ghostVariantStyles,
       link: styles.linkVariantStyles,
+      premium: styles.premiumVariantStyles,
     },
     size: {
       default: styles.defaultSizeStyles,

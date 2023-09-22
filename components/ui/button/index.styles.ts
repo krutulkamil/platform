@@ -28,6 +28,10 @@ export const linkVariantStyles = cn(
   'text-primary underline-offset-4 hover:underline'
 );
 
+export const premiumVariantStyles = cn(
+  'bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-0'
+);
+
 export const defaultSizeStyles = cn('h-10 px-4 py-2');
 
 export const smSizeStyles = cn('h-9 rounded-md px-3');

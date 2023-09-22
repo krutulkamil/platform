@@ -1,8 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { Zap } from 'lucide-react';
 
 import { Card, CardContent } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
+import { Button } from '@/components/ui/button';
 import { MAX_FREE_COUNTS } from '@/utils/constants';
 
 import * as styles from './index.styles';
@@ -28,7 +31,15 @@ export const FreeCounter = ({ apiLimitCount = 0 }: IProps) => {
             <p>
               {apiLimitCount} / {MAX_FREE_COUNTS} Free Generations
             </p>
+            <Progress
+              className={styles.progressBarStyles}
+              value={(apiLimitCount / MAX_FREE_COUNTS) * 100}
+            />
           </div>
+          <Button className={styles.buttonStyles} variant="premium">
+            Upgrade
+            <Zap className={styles.buttonIconStyles} />
+          </Button>
         </CardContent>
       </Card>
     </div>
