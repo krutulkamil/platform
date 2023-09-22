@@ -10,6 +10,7 @@ import axios from 'axios';
 import { Heading } from '@/components/layout/heading';
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/common/forms/controlled-inputs/input';
+import { CodeWrapper } from '@/components/common/code-wrapper';
 import { Button } from '@/components/ui/button';
 import { Empty } from '@/components/common/empty';
 import { Loader } from '@/components/common/loader';
@@ -20,14 +21,14 @@ import {
   codeSchema,
   type TCodeSchema,
 } from '@/app/(dashboard)/(routes)/code/schema';
+import { useProModal } from '@/hooks/use-pro-modal';
 import type { ICompletionMessage } from '@/types/completionMessage';
-import { CodeWrapper } from '@/components/common/code-wrapper';
 import * as styles from '@/app/(dashboard)/layout.styles';
 
 export default function CodePage() {
   const [messages, setMessages] = useState<ICompletionMessage[]>([]);
-
   const router = useRouter();
+  const { onOpen: onModalOpen } = useProModal();
 
   const form = useForm<TCodeSchema>({
     defaultValues: {
@@ -54,7 +55,9 @@ export default function CodePage() {
 
       form.reset();
     } catch (error: unknown) {
-      console.log(error);
+      if (axios.isAxiosError(error) && error.response?.status === 403) {
+        onModalOpen();
+      }
     } finally {
       router.refresh();
     }

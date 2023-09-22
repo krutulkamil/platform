@@ -20,13 +20,14 @@ import {
   conversationSchema,
   type TConversationSchema,
 } from '@/app/(dashboard)/(routes)/conversation/schema';
+import { useProModal } from '@/hooks/use-pro-modal';
 import type { ICompletionMessage } from '@/types/completionMessage';
 import * as styles from '@/app/(dashboard)/layout.styles';
 
 export default function ConversationPage() {
   const [messages, setMessages] = useState<ICompletionMessage[]>([]);
-
   const router = useRouter();
+  const { onOpen: onModalOpen } = useProModal();
 
   const form = useForm<TConversationSchema>({
     defaultValues: {
@@ -56,7 +57,9 @@ export default function ConversationPage() {
 
       form.reset();
     } catch (error: unknown) {
-      console.log(error);
+      if (axios.isAxiosError(error) && error.response?.status === 403) {
+        onModalOpen();
+      }
     } finally {
       router.refresh();
     }

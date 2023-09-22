@@ -14,6 +14,7 @@ import { Select } from '@/components/common/forms/controlled-inputs/select';
 import { Button } from '@/components/ui/button';
 import { Empty } from '@/components/common/empty';
 import { Loader } from '@/components/common/loader';
+import { ImageCard } from '@/components/common/cards/image-card';
 import {
   imageSchema,
   type TImageSchema,
@@ -22,14 +23,14 @@ import {
   amountOptions,
   resolutionOptions,
 } from '@/app/(dashboard)/(routes)/image/constants';
-import { ImageCard } from '@/components/common/cards/image-card';
+import { useProModal } from '@/hooks/use-pro-modal';
 import type { IImageData } from '@/types/imageData';
 import * as styles from '@/app/(dashboard)/layout.styles';
 
 export default function ImagePage() {
   const [images, setImages] = useState<string[]>([]);
-
   const router = useRouter();
+  const { onOpen: onModalOpen } = useProModal();
 
   const form = useForm<TImageSchema>({
     defaultValues: {
@@ -54,7 +55,9 @@ export default function ImagePage() {
       setImages(urls);
       form.reset();
     } catch (error: unknown) {
-      console.log(error);
+      if (axios.isAxiosError(error) && error.response?.status === 403) {
+        onModalOpen();
+      }
     } finally {
       router.refresh();
     }

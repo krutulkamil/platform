@@ -17,13 +17,14 @@ import {
   musicSchema,
   type TMusicSchema,
 } from '@/app/(dashboard)/(routes)/music/schema';
+import { useProModal } from '@/hooks/use-pro-modal';
 import type { IMusicResponse } from '@/types/musicResponse';
 import * as styles from '@/app/(dashboard)/layout.styles';
 
 export default function MusicPage() {
   const [music, setMusic] = useState<string>();
-
   const router = useRouter();
+  const { onOpen: onModalOpen } = useProModal();
 
   const form = useForm<TMusicSchema>({
     defaultValues: {
@@ -43,7 +44,9 @@ export default function MusicPage() {
       setMusic(data.audio);
       form.reset();
     } catch (error: unknown) {
-      console.log(error);
+      if (axios.isAxiosError(error) && error.response?.status === 403) {
+        onModalOpen();
+      }
     } finally {
       router.refresh();
     }

@@ -17,12 +17,13 @@ import {
   videoSchema,
   type TVideoSchema,
 } from '@/app/(dashboard)/(routes)/video/schema';
+import { useProModal } from '@/hooks/use-pro-modal';
 import * as styles from '@/app/(dashboard)/layout.styles';
 
 export default function VideoPage() {
   const [video, setVideo] = useState<string>();
-
   const router = useRouter();
+  const { onOpen: onModalOpen } = useProModal();
 
   const form = useForm<TVideoSchema>({
     defaultValues: {
@@ -42,7 +43,9 @@ export default function VideoPage() {
       setVideo(data[0]);
       form.reset();
     } catch (error: unknown) {
-      console.log(error);
+      if (axios.isAxiosError(error) && error.response?.status === 403) {
+        onModalOpen();
+      }
     } finally {
       router.refresh();
     }
