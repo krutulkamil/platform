@@ -1,20 +1,18 @@
 import { auth } from '@clerk/nextjs';
-import type { UserApiLimit } from '@prisma/client';
 
 import { prisma } from '@/lib/prisma';
 import { MAX_FREE_COUNTS } from '@/utils/constants';
 
-export const increaseApiLimit = async (): Promise<UserApiLimit | undefined> => {
+export const increaseApiLimit = async () => {
   const { userId } = auth();
 
   if (!userId) return;
 
-  const userApiLimit: UserApiLimit | null =
-    await prisma.userApiLimit.findUnique({
-      where: {
-        userId,
-      },
-    });
+  const userApiLimit = await prisma.userApiLimit.findUnique({
+    where: {
+      userId,
+    },
+  });
 
   if (!userApiLimit) {
     return prisma.userApiLimit.create({
@@ -35,7 +33,7 @@ export const increaseApiLimit = async (): Promise<UserApiLimit | undefined> => {
   });
 };
 
-export const checkApiLimit = async (): Promise<boolean> => {
+export const checkApiLimit = async () => {
   const { userId } = auth();
 
   if (!userId) return false;

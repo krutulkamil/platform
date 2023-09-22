@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs';
 
 import { openai } from '@/lib/openai';
+import { increaseApiLimit, checkApiLimit } from '@/lib/api-limit';
 import type { TImageSchema } from '@/app/(dashboard)/(routes)/image/schema';
 
 export async function POST(req: Request) {
@@ -33,11 +34,19 @@ export async function POST(req: Request) {
       return new NextResponse('Resolution is required', { status: 400 });
     }
 
+    const freeTrial = await checkApiLimit();
+
+    if (!freeTrial) {
+      return new NextResponse('Free trial limit exceeded', { status: 403 });
+    }
+
     const response = await openai.images.generate({
       prompt,
       size: resolution,
       n: Number(amount),
     });
+
+    await increaseApiLimit();
 
     return NextResponse.json(response.data);
   } catch (error) {
