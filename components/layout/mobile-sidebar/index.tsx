@@ -11,9 +11,10 @@ import * as styles from './index.styles';
 
 interface IProps {
   apiLimitCount: number;
+  isPro: boolean;
 }
 
-export const MobileSidebar = ({ apiLimitCount = 0 }: IProps) => {
+export const MobileSidebar = ({ apiLimitCount = 0, isPro = false }: IProps) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ export const MobileSidebar = ({ apiLimitCount = 0 }: IProps) => {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className={styles.sheetContentStyles}>
-        <Sidebar apiLimitCount={apiLimitCount} />
+        <Sidebar apiLimitCount={apiLimitCount} isPro={isPro} />
       </SheetContent>
     </Sheet>
   );

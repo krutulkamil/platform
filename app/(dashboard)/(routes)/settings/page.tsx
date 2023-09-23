@@ -8,6 +8,9 @@ import * as styles from '@/app/(dashboard)/layout.styles';
 
 export default async function SettingsPage() {
   const isPro = await checkSubscription();
+  const currentPlanCaption = isPro
+    ? 'You are currently on a Pro plan.'
+    : 'You are currently on a Free plan.';
 
   return (
     <div>
@@ -19,11 +22,7 @@ export default async function SettingsPage() {
         bgColor="bg-gray-700/10"
       />
       <div className={styles.settingsPaddingWrapperStyles}>
-        <div className={styles.settingsTextStyles}>
-          {isPro
-            ? 'You are currently on a Pro plan.'
-            : 'You are currently on a Free plan.'}
-        </div>
+        <div className={styles.settingsTextStyles}>{currentPlanCaption}</div>
         <SubscriptionButton isPro={isPro} />
       </div>
     </div>

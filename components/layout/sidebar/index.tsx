@@ -19,9 +19,10 @@ const montserrat = Montserrat({
 
 interface IProps {
   apiLimitCount: number;
+  isPro: boolean;
 }
 
-export const Sidebar = ({ apiLimitCount = 0 }: IProps) => {
+export const Sidebar = ({ apiLimitCount = 0, isPro = false }: IProps) => {
   const pathname = usePathname();
 
   return (
@@ -57,7 +58,7 @@ export const Sidebar = ({ apiLimitCount = 0 }: IProps) => {
           ))}
         </div>
       </div>
-      <FreeCounter apiLimitCount={apiLimitCount} />
+      <FreeCounter apiLimitCount={apiLimitCount} isPro={isPro} />
     </div>
   );
 };

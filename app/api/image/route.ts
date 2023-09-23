@@ -3,6 +3,7 @@ import { auth } from '@clerk/nextjs';
 
 import { openai } from '@/lib/openai';
 import { increaseApiLimit, checkApiLimit } from '@/lib/api-limit';
+import { checkSubscription } from '@/lib/subscription';
 import type { TImageSchema } from '@/app/(dashboard)/(routes)/image/schema';
 
 export async function POST(req: Request) {
@@ -35,8 +36,9 @@ export async function POST(req: Request) {
     }
 
     const freeTrial = await checkApiLimit();
+    const isPro = await checkSubscription();
 
-    if (!freeTrial) {
+    if (!freeTrial && !isPro) {
       return new NextResponse('Free trial limit exceeded', { status: 403 });
     }
 
@@ -46,7 +48,9 @@ export async function POST(req: Request) {
       n: Number(amount),
     });
 
-    await increaseApiLimit();
+    if (!isPro) {
+      await increaseApiLimit();
+    }
 
     return NextResponse.json(response.data);
   } catch (error) {

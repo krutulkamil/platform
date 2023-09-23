@@ -13,9 +13,10 @@ import * as styles from './index.styles';
 
 interface IProps {
   apiLimitCount: number;
+  isPro: boolean;
 }
 
-export const FreeCounter = ({ apiLimitCount = 0 }: IProps) => {
+export const FreeCounter = ({ apiLimitCount = 0, isPro = false }: IProps) => {
   const [mounted, setMounted] = useState(false);
   const { onOpen } = useProModal();
 
@@ -24,6 +25,8 @@ export const FreeCounter = ({ apiLimitCount = 0 }: IProps) => {
   }, []);
 
   if (!mounted) return null;
+
+  if (isPro) return null;
 
   return (
     <div className={styles.paddingWrapperStyles}>
