@@ -6,7 +6,7 @@ import { Zap } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
-import { MAX_FREE_COUNTS } from '@/utils/constants';
+import { MAX_FREE_COUNTS } from '@/config/constants';
 import { useProModal } from '@/hooks/use-pro-modal';
 
 import * as styles from './index.styles';

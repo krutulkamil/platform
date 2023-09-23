@@ -2,7 +2,7 @@ import { auth } from '@clerk/nextjs';
 import type { UserApiLimit as TUserApiLimit } from '@prisma/client';
 
 import { prisma } from '@/lib/prisma';
-import { MAX_FREE_COUNTS } from '@/utils/constants';
+import { MAX_FREE_COUNTS } from '@/config/constants';
 
 export const increaseApiLimit = async (): Promise<
   TUserApiLimit | undefined
