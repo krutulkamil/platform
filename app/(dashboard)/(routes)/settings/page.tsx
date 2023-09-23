@@ -3,6 +3,7 @@ import { Settings } from 'lucide-react';
 
 import { Heading } from '@/components/layout/heading';
 import { checkSubscription } from '@/lib/subscription';
+import { SubscriptionButton } from '@/components/common/subscription-button';
 import * as styles from '@/app/(dashboard)/layout.styles';
 
 export default async function SettingsPage() {
@@ -23,6 +24,7 @@ export default async function SettingsPage() {
             ? 'You are currently on a Pro plan.'
             : 'You are currently on a Free plan.'}
         </div>
+        <SubscriptionButton isPro={isPro} />
       </div>
     </div>
   );

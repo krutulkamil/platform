@@ -74,6 +74,7 @@ export const ProModal = () => {
             variant="premium"
             className={styles.fullWidthStyles}
             onClick={handleSubscribe}
+            disabled={loading}
           >
             Upgrade <Zap className={styles.upgradeIconStyles} />
           </Button>
