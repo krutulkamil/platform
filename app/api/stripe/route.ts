@@ -55,14 +55,14 @@ export async function GET() {
             unit_amount: 2000,
             recurring: {
               interval: 'month',
-            }
+            },
           },
           quantity: 1,
         },
       ],
       metadata: {
         userId,
-      }
+      },
     });
 
     return new NextResponse(JSON.stringify({ url: stripeSession.url }));
