@@ -45,3 +45,7 @@ export const audioStyles = cn('w-full mt-8');
 export const videoStyles = cn(
   'w-full aspect-video mt-8 rounded-lg border bg-black'
 );
+
+export const settingsPaddingWrapperStyles = cn('px-4 lg:px-8 space-y-4');
+
+export const settingsTextStyles = cn('text-muted-foreground text-sm');
