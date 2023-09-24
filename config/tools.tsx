@@ -36,6 +36,6 @@ export const tools = [
     bgColor: 'bg-green-700/10',
     href: '/code',
   },
-];
+] as const;
 
 export type TTool = (typeof tools)[number];

@@ -1,20 +1,17 @@
 import React from 'react';
-import Link from 'next/link';
 
-import { Button } from '@/components/ui/button';
+import { LandingNavbar } from '@/components/layout/landing-navbar';
+import { LandingHero } from '@/components/layout/landing-hero';
+import { LandingContent } from '@/components/layout/landing-content';
+
+import * as styles from './page.styles';
 
 export default function LandingPage() {
   return (
-    <div>
-      Landing Page
-      <div>
-        <Link href="/sign-in">
-          <Button>Login</Button>
-        </Link>
-        <Link href="/sign-up">
-          <Button>Register</Button>
-        </Link>
-      </div>
+    <div className={styles.fullWidthStyles}>
+      <LandingNavbar />
+      <LandingHero />
+      <LandingContent />
     </div>
   );
 }

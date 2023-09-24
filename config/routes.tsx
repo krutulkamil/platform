@@ -49,5 +49,6 @@ export const routes = [
     label: 'Settings',
     icon: Settings,
     href: '/settings',
+    color: undefined,
   },
-];
+] as const;
