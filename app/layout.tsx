@@ -5,6 +5,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 
 import { ModalProvider } from '@/components/providers/modal-provider';
 import { ToasterProvider } from '@/components/providers/toaster-provider';
+import { CrispProvider } from '@/components/providers/crisp-provider';
 
 import './globals.css';
 
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: IProps) {
   return (
     <ClerkProvider>
       <html lang="en">
+        <CrispProvider />
         <body className={inter.className}>
           <ModalProvider />
           <ToasterProvider />
