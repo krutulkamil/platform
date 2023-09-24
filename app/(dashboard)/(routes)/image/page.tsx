@@ -6,6 +6,7 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { ImageIcon } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 import { Heading } from '@/components/layout/heading';
 import { Form } from '@/components/ui/form';
@@ -57,6 +58,8 @@ export default function ImagePage() {
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response?.status === 403) {
         onModalOpen();
+      } else {
+        toast.error('Something went wrong.');
       }
     } finally {
       router.refresh();
